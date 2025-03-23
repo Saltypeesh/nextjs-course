@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useOptimistic } from 'react';
 
@@ -24,8 +24,10 @@ function Post({ post, action }) {
             </p>
           </div>
           <div>
-            <form action={action.bind(null, post.id)}
-              className={post.isLiked ? 'liked' : ''}>
+            <form
+              action={action.bind(null, post.id)}
+              className={post.isLiked ? 'liked' : ''}
+            >
               <LikeButton />
             </form>
           </div>
@@ -44,13 +46,11 @@ export default function Posts({ posts }) {
       return prevPosts;
     }
 
-
-    const updatedPosts = { ...prevPosts[updatedPostIndex] }
-    updatedPosts.likes = updatedPosts.likes + (updatedPosts.isLiked ? -1 : 1);
-    updatedPosts.isLiked = !updatedPosts.isLiked;
+    const updatedPost = { ...prevPosts[updatedPostIndex] };
+    updatedPost.likes = updatedPost.likes + (updatedPost.isLiked ? -1 : 1);
+    updatedPost.isLiked = !updatedPost.isLiked;
     const newPosts = [...prevPosts];
-    newPosts[updatedPostIndex] = updatedPosts;
-
+    newPosts[updatedPostIndex] = updatedPost;
     return newPosts;
   })
 
